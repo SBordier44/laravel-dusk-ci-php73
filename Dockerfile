@@ -25,8 +25,8 @@ RUN apt-get update -y && apt-get install -y wget curl zip unzip git software-pro
     && apt-get update \
     && apt-get upgrade -yq \
     && apt-get install -yq libgd-tools \
-    && apt-get install -yq --fix-missing php7.2-fpm php7.2-cli php7.2-xml php7.2-zip php7.2-curl php7.2-bcmath php7.2-json php7.2-imap php-memcached \
-    php7.2-mbstring php7.2-pgsql php7.2-mysql php7.2-gd php-xdebug php-imagick imagemagick nginx \
+    && apt-get install -yq --fix-missing php7.3-fpm php7.3-cli php7.3-xml php7.3-zip php7.3-curl php7.3-bcmath php7.3-json php7.3-imap php-memcached \
+    php7.3-mbstring php7.3-pgsql php7.3-mysql php7.3-gd php-imagick imagemagick nginx \
     && apt-get install -yq mc lynx mysql-client bzip2 make g++ \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer 
 
@@ -96,5 +96,5 @@ EXPOSE 80 9515 3306
 
 WORKDIR /var/www/html/
 
-#CMD ["php7.2-fpm", "-g", "daemon off;"]
+#CMD ["php7.3-fpm", "-g", "daemon off;"]
 CMD ["nginx", "-g", "daemon off;"]
