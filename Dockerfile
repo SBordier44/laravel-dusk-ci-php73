@@ -79,6 +79,8 @@ ADD configs/nginx-default-site /etc/nginx/sites-available/default
 
 VOLUME [ "/var/log/supervisor" ]
 
+RUN composer global require laravel/envoy
+
 RUN apt-get -yq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get upgrade && apt-get autoremove \
     && php --version \
