@@ -13,7 +13,7 @@ ENV LANGUAGE es_AR:es
 ENV DISPLAY :99
 ENV SCREEN_RESOLUTION 1920x720x24
 ENV CHROMEDRIVER_PORT 9515
-
+ENV PATH="${PATH}:/root/.composer/vendor/bin"
 ENV TMPDIR=/tmp
 
 RUN apt-get update -y && apt-get install -y wget curl zip unzip git software-properties-common \
@@ -79,7 +79,7 @@ ADD configs/nginx-default-site /etc/nginx/sites-available/default
 
 VOLUME [ "/var/log/supervisor" ]
 
-RUN composer global require laravel/envoy
+RUN composer global require laravel/envoy --no-progress --no-suggest
 
 RUN apt-get -yq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get upgrade && apt-get autoremove \
@@ -88,7 +88,8 @@ RUN apt-get -yq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && nginx -v \
     && phpunit --version \
     && nodejs --version \
-    && npm --version
+    && npm --version \
+    && envoy -V
     #&& node-sass --version \
     #&& gulp --version
 #RUN yarn --version
